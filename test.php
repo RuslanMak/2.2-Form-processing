@@ -7,14 +7,20 @@ $data = json_decode($json, true);
 <h2>Дайте ответы на вопроссы</h2>
 <form action="test.php" method="post">
     <?php for ($i = 0; $i < count($data); $i++): ?>
-    <label><?php echo$data[$i]['number'] . ") " . $data[$i]['question'] ?></label>
-    <input name="<?php echo $data[$i]['number'] ?>" type="text">
+    <p><?php echo$data[$i]['number'] . ") " . $data[$i]['question'] ?></p>
+    <input type="radio" name="<?php echo $data[$i]['number'] ?>" value="<?php echo $data[$i]['variant1'] ?>">
+        <?php echo $data[$i]['variant1'] ?><br>
+    <input type="radio" name="<?php echo $data[$i]['number'] ?>" value="<?php echo $data[$i]['variant2'] ?>">
+        <?php echo $data[$i]['variant2'] ?><br>
+    <input type="radio" name="<?php echo $data[$i]['number'] ?>" value="<?php echo $data[$i]['variant3'] ?>">
+        <?php echo $data[$i]['variant3'] ?><br>
     <br>
     <?php endfor; ?>
     <button type="submit">Проверить</button>
 </form>
 
 <?php
+
 $v = 1;
 
 if ($_POST[$v] != null) {
@@ -31,4 +37,6 @@ if ($_POST[$v] != null) {
     }
 }
 ?>
+
+
 
