@@ -16,3 +16,6 @@ for ($i = 0; $i < count($data); $i++) {
 }
 
 echo "<a href='test.php'><h1>Go to test</h1></a>";
+
+
+echo "<a href='testttt.php'><h1>Go to wrong test</h1></a>";

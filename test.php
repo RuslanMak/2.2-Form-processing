@@ -6,6 +6,10 @@ $data = json_decode($json, true);
 
 <h2>Дайте ответы на вопроссы</h2>
 <form action="test.php" method="post">
+    <label>
+        <p>Введите ваше имя</p>
+        <input type="text" name="FirstName" required><br>
+    </label>
     <?php for ($i = 0; $i < count($data); $i++): ?>
     <p><?php echo$data[$i]['number'] . ") " . $data[$i]['question'] ?></p>
     <input type="radio" name="<?php echo $data[$i]['number'] ?>" value="<?php echo $data[$i]['variant1'] ?>">
@@ -20,23 +24,41 @@ $data = json_decode($json, true);
 </form>
 
 <?php
+echo $_POST['FirstName'];
+echo "<br><br>";
 
 $v = 1;
+$mark = 0;
 
 if ($_POST[$v] != null) {
     for ($i = 0; $i < count($data); $i++) {
-        $nun_answer = $data[$i]['number'];
+
+        $num_answer = $data[$i]['number'];
         $answer = $data[$i]['answer'];
-        $question = "$data[$i]['question']";
-        if ($_POST[$v] == $answer) {
-            echo "$nun_answer" . ") " . "Правильно, ответ = " . "$answer" . "<br>";
+
+        if ($_POST[$v] == null) {
+            echo "$num_answer" . ") " . "ОТВЕТ НЕ ВЫБРАН!!!!" . "<br>";
+        } else if ($_POST[$v] == $answer) {
+            echo "$num_answer" . ") " . "Правильно, ответ = " . "$answer" . "<br>";
+            $mark++;
         } else {
-            echo "$nun_answer" . ") " ."НЕ ПРАВИЛЬНО!!!" . "<br>";
+            echo "$num_answer" . ") " . "Не правильно!" . "<br>";
         }
+
         $v++;
     }
+    echo "<br>" . "Оценка: " . $mark. "<br>";
+
+    echo "<h2>Жулаете получить сертификат?</h2>";
+    $conclusion = strval($_POST['FirstName'] . "! Your mark is: " . $mark);
 }
 ?>
 
-
+<form action="certificate.php" method="post">
+    <input type="hidden" name="conclusion" value="<?php echo $conclusion ?>">
+    <?php
+    if ($_POST[1] != null) {
+        echo "<button type='submit'>Проверить</button>";
+    }?>
+</form>
 
