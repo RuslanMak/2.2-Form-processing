@@ -2,6 +2,12 @@
 
 $json = file_get_contents(__DIR__ . '/test/test.json');
 $data = json_decode($json, true);
+
+if ($data[0]['number'] == false) {
+    header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found');
+    echo "Ошибка 404!!! Загрузите сначала соответствующие тесты!!!!";
+    exit;
+}
 ?>
 
 <h2>Дайте ответы на вопроссы</h2>
@@ -24,13 +30,14 @@ $data = json_decode($json, true);
 </form>
 
 <?php
+
 echo $_POST['FirstName'];
 echo "<br><br>";
 
 $v = 1;
 $mark = 0;
 
-if ($_POST[$v] != null) {
+if ($_POST['FirstName'] != null) {
     for ($i = 0; $i < count($data); $i++) {
 
         $num_answer = $data[$i]['number'];
@@ -49,7 +56,6 @@ if ($_POST[$v] != null) {
     }
     echo "<br>" . "Оценка: " . $mark. "<br>";
 
-    echo "<h2>Жулаете получить сертификат?</h2>";
     $conclusion = strval($_POST['FirstName'] . "! Your mark is: " . $mark);
 }
 ?>
@@ -58,7 +64,8 @@ if ($_POST[$v] != null) {
     <input type="hidden" name="conclusion" value="<?php echo $conclusion ?>">
     <?php
     if ($_POST[1] != null) {
-        echo "<button type='submit'>Проверить</button>";
+        echo "<h2>Желаете получить сертификат?</h2>";
+        echo "<button type='submit'>Получить сертификат</button>";
     }?>
 </form>
 
