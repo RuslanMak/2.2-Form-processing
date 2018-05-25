@@ -45,7 +45,7 @@ if (isset($_POST['FirstName'])) {
         $num_answer = $data[$i]['number'];
         $answer = $data[$i]['answer'];
 
-        if ($_POST[$v] == null) {
+        if (isset($_POST[$v]) == null) {
             echo "$num_answer" . ") " . "ОТВЕТ НЕ ВЫБРАН!!!!" . "<br>";
         } else if ($_POST[$v] == $answer) {
             echo "$num_answer" . ") " . "Правильно, ответ = " . "$answer" . "<br>";
