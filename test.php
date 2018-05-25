@@ -33,13 +33,14 @@ if ($data[0]['number'] == false) {
 </form>
 
 <?php
-echo $_POST['FirstName'];
-echo "<br><br>";
 
 $v = 1;
 $mark = 0;
 
 if (isset($_POST['FirstName'])) {
+    echo $_POST['FirstName'];
+    echo "<br><br>";
+
     for ($i = 0; $i < count($data); $i++) {
 
         $num_answer = $data[$i]['number'];
