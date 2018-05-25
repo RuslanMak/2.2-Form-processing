@@ -1,6 +1,5 @@
 <?php
 
-
 if (isset($_FILES['userfile']['name'])) {
     $name = $_FILES['userfile']['name'];
     move_uploaded_file($_FILES['userfile']['tmp_name'], 'test/' . "$name");

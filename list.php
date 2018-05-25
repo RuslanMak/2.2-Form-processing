@@ -21,7 +21,7 @@ $file_list = glob('test/*.json');
         foreach ($file_list as $key => $file) : ?>
             <label><input type="radio" name="test" value="<?php echo $file; ?>" required>Test <?php echo $c ?></label><br>
             <?php $c++; ?>
-        <? endforeach; ?>
+        <?php endforeach; ?>
         <input type="submit" value="Пройти тест">
     </form>
 </body>

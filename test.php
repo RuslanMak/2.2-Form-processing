@@ -39,7 +39,7 @@ echo "<br><br>";
 $v = 1;
 $mark = 0;
 
-if ($_POST['FirstName'] != null) {
+if (isset($_POST['FirstName'])) {
     for ($i = 0; $i < count($data); $i++) {
 
         $num_answer = $data[$i]['number'];
